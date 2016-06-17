@@ -27,8 +27,10 @@ def get_stock(request):
     text = requests.get(url).text
     soup = bs4.BeautifulSoup(text, "html.parser")
     data = {}
+    data['name'] = soup.title.string.split(':')[0]
     data['current_price'] = soup.select('.pr')[0].getText().split('\n')[1]
     data['open_price'] = soup.select('.snap-data .val')[2].getText().split('\n')[0]
+    data['pe'] = soup.select('.snap-data .val')[5].getText().split('\n')[0]
     data['day_change'] = soup.select('.chr')[0].getText()
 
     data['historical_data'] = get_historical_data(stock)
@@ -39,6 +41,7 @@ def get_stock(request):
 
     return HttpResponse(json_data)
 
+# gets data from the last 200 trading days
 def get_historical_data(stock):
     hist_url = 'https://www.google.com/finance/historical?q=NASDAQ%3A' + stock + '&num=200'
     hist_text = requests.get(hist_url).text
