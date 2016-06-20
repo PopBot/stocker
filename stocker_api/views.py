@@ -31,7 +31,10 @@ def get_stock(request):
     data['current_price'] = soup.select('.pr')[0].getText().split('\n')[1]
     data['open_price'] = soup.select('.snap-data .val')[2].getText().split('\n')[0]
     data['pe'] = soup.select('.snap-data .val')[5].getText().split('\n')[0]
-    data['day_change'] = soup.select('.chg')[0].getText()
+    try:
+        data['day_change'] = soup.select('.chg')[0].getText()
+    except:
+        data['day_change'] = soup.select('.ch')[0].getText()
 
     data['historical_data'] = get_historical_data(stock)
 
@@ -51,7 +54,7 @@ def get_historical_data(stock):
     result = {}
     for i in range(1, len(dates_process)):
         results = dates_process[i].split('\n')
-        result[results[0]] = {'Open': results[1], 'High': results[2], 'Low': results[3], 'Close': results[4], 'Volume': results[5], 'Change': percent_change(float(results[4]), float(results[1])), 'Diff': round_hund(float(results[4]) - float(results[1]))}
+        result[results[0]] = {'Open': results[1], 'High': results[2], 'Low': results[3], 'Close': results[4], 'Volume': results[5], 'Change': percent_change(float(results[1]), float(results[4])), 'Diff': round_hund(float(results[4]) - float(results[1]))}
     return result
 
 

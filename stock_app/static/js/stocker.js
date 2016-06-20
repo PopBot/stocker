@@ -18,23 +18,25 @@ $(document).ready(function() {
             console.log(keys);
             for (var i = 0; i < keys.length; i++) {
                 var data = hist_data[keys[i]]
-                var diff = data['Diff'];
-                var report = '<p id="item' + i + '">' + keys[i] + ': ' + diff + ": " + data['Change'] +  '</p>';
+                var report = '<div id="bar"> <div id="slide' + i + '"> <p id="item' + i + '" class' + "='day'>" + keys[i] + ': '+  data['Change'] +  '</p></div></div>';
                 var temp  = $(report);
                 $("#data").append(temp);
                 if (parseFloat(data['Change']) < 0) {
-                    $("#item" + i).css("background-color", "#ff4d4d");
-                    $("#item" + i).css("width", '50%');
+                    $("#slide" + i).css({"background-color": "#ff4d4d", "width": percent_change(data['Change']) + "%"});
+                    
                 } else {
-                    $("#item" + i).css("background-color", "#47d147");
+                    $("#slide" + i).css({"background-color": "#47d147", "width": percent_change(data['Change']) + "%"});
                 }
-
-
-            }
+           }
         });
     });
 
 
 });
+function percent_change(percent) {
+    // -5 (-50) to 5 (50)
+    return Math.abs(percent * 10);
 
+
+}
 
