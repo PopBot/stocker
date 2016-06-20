@@ -17,9 +17,18 @@ $(document).ready(function() {
             });
             console.log(keys);
             for (var i = 0; i < keys.length; i++) {
-                var report = '<p>' + keys[i] + ': ' + hist_data[keys[i]]['Open'] + ': ' + hist_data[keys[i]]['Close'] + '</p>';
+                var data = hist_data[keys[i]]
+                var diff = data['Diff'];
+                var report = '<p id="item' + i + '">' + keys[i] + ': ' + diff + ": " + data['Change'] +  '</p>';
                 var temp  = $(report);
                 $("#data").append(temp);
+                if (parseFloat(data['Change']) < 0) {
+                    $("#item" + i).css("background-color", "#ff4d4d");
+                    $("#item" + i).css("width", '50%');
+                } else {
+                    $("#item" + i).css("background-color", "#47d147");
+                }
+
 
             }
         });

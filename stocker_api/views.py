@@ -51,7 +51,7 @@ def get_historical_data(stock):
     result = {}
     for i in range(1, len(dates_process)):
         results = dates_process[i].split('\n')
-        result[results[0]] = {'Open': results[1], 'High': results[2], 'Low': results[3], 'Close': results[4], 'Volume': results[5]}
+        result[results[0]] = {'Open': results[1], 'High': results[2], 'Low': results[3], 'Close': results[4], 'Volume': results[5], 'Change': percent_change(float(results[4]), float(results[1])), 'Diff': round_hund(float(results[4]) - float(results[1]))}
     return result
 
 
