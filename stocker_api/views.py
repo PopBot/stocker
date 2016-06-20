@@ -31,7 +31,7 @@ def get_stock(request):
     data['current_price'] = soup.select('.pr')[0].getText().split('\n')[1]
     data['open_price'] = soup.select('.snap-data .val')[2].getText().split('\n')[0]
     data['pe'] = soup.select('.snap-data .val')[5].getText().split('\n')[0]
-    data['day_change'] = soup.select('.chr')[0].getText()
+    data['day_change'] = soup.select('.chg')[0].getText()
 
     data['historical_data'] = get_historical_data(stock)
 
