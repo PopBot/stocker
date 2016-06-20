@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    console.log('it works');
     $("#submit").click(function(e) {
 
         e.preventDefault();
@@ -18,7 +17,7 @@ $(document).ready(function() {
             console.log(keys);
             for (var i = 0; i < keys.length; i++) {
                 var data = hist_data[keys[i]]
-                var report = '<div id="bar"><div id="slide' + i + '" class="slider"><p>&nbsp;</p></div></div>';
+                var report = '<div id="bar"><div id="slide' + i + '" class="slider"><a href="#" data-toggle="tooltip" title="test">&nbsp;</a></div></div>';
                 var temp  = $(report);
                 $("#data").append(temp);
                 if (parseFloat(data['Change']) < 0) {
