@@ -4,9 +4,17 @@
 #bar {
     margin:0 auto;
     width: 100%;
-    background-color: white;
+    background-color: orange;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-bottom:0px;
+    padding-top:0px;
+}
+p {
+    margin: 0px;
 }
 .slider {
     position: relative;
     clear: both;
+    margin-bottom: 0px;
 }

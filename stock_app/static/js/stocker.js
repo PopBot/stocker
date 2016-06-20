@@ -18,11 +18,11 @@ $(document).ready(function() {
             console.log(keys);
             for (var i = 0; i < keys.length; i++) {
                 var data = hist_data[keys[i]]
-                var report = '<div id="bar"> <div id="slide' + i + '" class="slider"> <p id="item' + i + '" class' + "='day'>" + keys[i] + ': '+  data['Change'] +  '</p></div></div>';
+                var report = '<div id="bar"><div id="slide' + i + '" class="slider"><p>&nbsp;</p></div></div>';
                 var temp  = $(report);
                 $("#data").append(temp);
                 if (parseFloat(data['Change']) < 0) {
-                    $("#slide" + i).css({"background-color": "#ff4d4d", "width": percent_change(data['Change']) + "%", "float": "right", "right": "50%"});
+                    $("#slide" + i).css({"background-color": "#ff4d4d", "width": percent_change(data['Change']) + "%", "left": 50 - percent_change(data['Change']) + "%"});
                     
                 } else {
                     $("#slide" + i).css({"background-color": "#47d147", "width": percent_change(data['Change']) + "%", "left": "50%"});
