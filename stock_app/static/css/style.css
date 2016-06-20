@@ -1,9 +1,12 @@
 .day {
     text-align: center;
-
 }
 #bar {
     margin:0 auto;
     width: 100%;
     background-color: white;
+}
+.slider {
+    position: relative;
+    clear: both;
 }
