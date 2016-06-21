@@ -1,4 +1,28 @@
+body, html {
+    height: 100%;
+}
 .day {
+    text-align: center;
+}
+#land {
+    height: 100%;
+    width: 100%;
+}
+#info, #front {
+    font-family: 'Open Sans', sans-serif;
+}
+
+#front {
+    text-align:center;
+    position: relative;
+    width: 50%;
+    top: 30%;
+    margin: auto;
+}
+#name {
+    text-align: center;
+}
+#current {
     text-align: center;
 }
 #bar {
@@ -11,9 +35,7 @@
     padding-bottom:0px;
     padding-top:0px;
 }
-#name {
-    color: orange;
-}
+
 div p {
     margin: 0 !important;
 }

@@ -3,6 +3,8 @@
 <html>
     <head>
         <title> Stocker </title>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans|Slabo+27px' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -10,10 +12,19 @@
     </head>
 
     <body>
-        <input id="get_stock"> </input>
-        <button id="submit">submit </button>
-        <h1 id="name"> </h1>
-        <h2 id="current"></h2>
-        <div id="data"> hey </div>
+        <div id="land">
+            <div id="front">
+                <h1> Stocker </h1>
+                <h2> Enter a stock ticker... </h2>
+                <input id="get_stock"> </input>
+                <br> </br>
+                <button id="submit" class="btn btn-success">Submit </button>
+             </div>
+        </div>
+        <div id="info">
+            <h1 id="name"> </h1>
+            <h2 id="current"></h2>
+        </div>
+        <div id="data"> </div>
     </body>
 </html>
