@@ -26,23 +26,26 @@ def get_stock(request):
     url = 'https://www.google.com/finance?q=' + stock
     text = requests.get(url).text
     soup = bs4.BeautifulSoup(text, "html.parser")
-    data = {}
-    data['name'] = soup.title.string.split(':')[0]
-    data['current_price'] = soup.select('.pr')[0].getText().split('\n')[1]
-    data['open_price'] = soup.select('.snap-data .val')[2].getText().split('\n')[0]
-    data['pe'] = soup.select('.snap-data .val')[5].getText().split('\n')[0]
     try:
-        data['day_change'] = soup.select('.chg')[0].getText()
+        data = {}
+        data['name'] = soup.title.string.split(':')[0]
+        data['current_price'] = soup.select('.pr')[0].getText().split('\n')[1]
+        data['open_price'] = soup.select('.snap-data .val')[2].getText().split('\n')[0]
+        data['pe'] = soup.select('.snap-data .val')[5].getText().split('\n')[0]
+        try:
+            data['day_change'] = soup.select('.chg')[0].getText()
+        except:
+            data['day_change'] = soup.select('.ch')[0].getText()
+
+        data['historical_data'] = get_historical_data(stock)
+
+        json_data = json.dumps(data)
+        today = datetime.datetime.now().date()
+        fifty = timedelta(days=-50)
+
+        return HttpResponse(json_data)
     except:
-        data['day_change'] = soup.select('.ch')[0].getText()
-
-    data['historical_data'] = get_historical_data(stock)
-
-    json_data = json.dumps(data)
-    today = datetime.datetime.now().date()
-    fifty = timedelta(days=-50)
-
-    return HttpResponse(json_data)
+        return HttpResponse('["failure"]')
 
 # gets data from the last 200 trading days
 def get_historical_data(stock):

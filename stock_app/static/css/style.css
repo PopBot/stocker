@@ -3,7 +3,10 @@ body, html {
 }
 body, h1, #current {
     margin:0 !important;
-    padding: 0 !important;
+}
+#title {
+    font-size: 80px;
+    padding: 5px;
 }
 .day {
     text-align: center;
@@ -20,6 +23,12 @@ body, h1, #current {
 #info, #front {
     font-family: 'Open Sans', sans-serif;
 }
+#AHHH {
+    padding-top: 50px;
+}
+#fail {
+    display: none;
+} 
 #front {
     text-align:center;
     position: relative;
@@ -29,9 +38,11 @@ body, h1, #current {
 }
 #name {
     text-align: center;
+    padding-top: 10px;
 }
 #current {
     text-align: center;
+    padding-bottom: 10px;
 }
 #info {
     background-color: #ff6633;
