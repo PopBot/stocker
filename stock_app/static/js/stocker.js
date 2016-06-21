@@ -9,7 +9,7 @@ $(document).ready(function() {
         $.getJSON('/api/get_stock/' + stock, function(data) {
             if (data[0] == "failure") {
                 console.log('failure');
-                $('#fail').text("ALERT: " + stock + " is not a valid ticker");
+                $('#fail').html("<strong> ALERT: </strong>" + stock + " is not a valid ticker");
                 $('#fail').css("display", 'block');
             } else {
                 $('#name').html(data.name);
