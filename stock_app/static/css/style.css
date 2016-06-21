@@ -11,6 +11,9 @@
     padding-bottom:0px;
     padding-top:0px;
 }
+#name {
+    color: orange;
+}
 div p {
     margin: 0 !important;
 }
@@ -39,7 +42,7 @@ div p {
 
     /* Fade in tooltip */
     opacity: 0;
-    transition: opacity 1s;
+    transition: opacity 0.2s;
 }
 
 /* Tooltip arrow */
@@ -55,9 +58,13 @@ div p {
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
-.slider:hover .tooltiptext {
+#bar:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
+}
+
+#bar:hover .slider {
+    background-color: black;
 }
 
 

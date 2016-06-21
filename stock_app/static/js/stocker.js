@@ -15,30 +15,32 @@ $(document).ready(function() {
 
             });
             console.log(keys);
-            for (var i = 0; i < keys.length; i++) {
-                var data = hist_data[keys[i]]
-                var report = '<div id="bar"><div id="slide' + i + '" class="slider"><span class="tooltiptext">' + data['Close'] + '</span></div></div>';
+            for (var i = 0; i < keys.length - 1; i++) {
+                var last = hist_data[keys[i + 1]]['Close'];
+                var data = hist_data[keys[i]];
+                var change = get_percent(last, data['Close']);
+                console.log(last + " " + data['Close']);
+                var report = '<div id="bar"><div id="slide' + i + '" class="slider"><span class="tooltiptext">' + keys[i] + ': ' + data['Close'] + '</span></div></div>';
                 var temp  = $(report);
                 $("#data").append(temp);
-                if (parseFloat(data['Change']) < 0) {
-                    $("#slide" + i).css({"background-color": "#ff4d4d", "width": percent_change(data['Change']) + "%", "left": 50 - percent_change(data['Change']) + "%"});
+                if (change < 0) {
+                    $("#slide" + i).css({"background-color": "#ff4d4d", "width": percent_change(change) + "%", "left": 50 - percent_change(change) + "%"});
                     $("#slide" + i).addClass("red");
                     
                 } else {
-                    $("#slide" + i).css({"background-color": "#47d147", "width": percent_change(data['Change']) + "%", "left": "50%"});
+                    $("#slide" + i).css({"background-color": "#47d147", "width": percent_change(change) + "%", "left": "50%"});
                     $("#slide" + i).addClass("green");
 
                 }
            }
         });
     });
-    $(".green").hover(function() {
-        $(".green").css("background-color", "blue");
-
-
-    });
+    
 
 });
+function get_percent(old, cur) {
+    return ((cur - old) / old) * 100
+}
 function percent_change(percent) {
     // -5 (-50) to 5 (50)
     return Math.abs(percent * 10);
