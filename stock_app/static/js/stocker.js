@@ -1,6 +1,8 @@
 $(document).ready(function() {
     $("#submit").click(function(e) {
-
+        
+       
+        
         e.preventDefault();
         var stock = $('#get_stock').val();
     
@@ -33,6 +35,10 @@ $(document).ready(function() {
 
                 }
            }
+            $('html, body').animate({
+            scrollTop: $('#info').offset().top
+
+        }, 1933);
         });
     });
     
@@ -47,4 +53,5 @@ function percent_change(percent) {
 
 
 }
+
 

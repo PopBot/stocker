@@ -1,17 +1,25 @@
 body, html {
     height: 100%;
 }
+body, h1, #current {
+    margin:0 !important;
+    padding: 0 !important;
+}
 .day {
     text-align: center;
 }
 #land {
     height: 100%;
     width: 100%;
+    background-color:  #0066ff;
+    color: white;
+}
+#get_stock {
+    color: black;
 }
 #info, #front {
     font-family: 'Open Sans', sans-serif;
 }
-
 #front {
     text-align:center;
     position: relative;
@@ -25,6 +33,10 @@ body, html {
 #current {
     text-align: center;
 }
+#info {
+    background-color: #ff6633;
+}
+
 #bar {
     margin:0 auto;
     width: 100%;
