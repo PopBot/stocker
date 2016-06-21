@@ -29,6 +29,9 @@ body, h1, #current {
 #fail {
     display: none;
 } 
+#fail strong {
+    font-size: 24px;
+}
 #front {
     text-align:center;
     position: relative;
