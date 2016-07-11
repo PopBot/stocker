@@ -25,9 +25,9 @@ $(document).ready(function() {
                     var last = hist_data[keys[i + 1]]['Close'];
                     var data = hist_data[keys[i]];
                     var change = get_percent(last, data['Close']);
-                    var report = '<div id="bar"><div id="slide' + i + '" class="slider"><span class="tooltiptext">' + keys[i] + ': ' + data['Close'] + '</span></div></div>';
-                    var temp  = $(report);
-                    $("#data").append(temp);
+                    var report = '<div id="bar"><div id="slide' + i + '" class="slider"><span class="tooltiptext">' + keys[i] + ': <br>' + data['Close'] + '</span></div></div>';
+                    var temap  = $(report);
+                    $("#data").append(temap);
                     if (change < 0) {
                         $("#slide" + i).css({"background-color": "#ff4d4d", "width": percent_change(change) + "%", "left": 50 - percent_change(change) + "%"});
                         $("#slide" + i).addClass("red");
