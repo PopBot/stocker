@@ -1,8 +1,6 @@
 $(document).ready(function() {
     $("#submit").click(function(e) {
         
-       
-        
         e.preventDefault();
         var stock = $('#get_stock').val();
     
@@ -12,6 +10,7 @@ $(document).ready(function() {
                 $('#fail').html("<strong> ALERT: </strong>" + stock + " is not a valid ticker");
                 $('#fail').css("display", 'block');
             } else {
+                $('#stock_data').css("display", 'block');
                 $('#name').html(data.name);
                 $('#fail').css("display", 'none');
                 $('#data').empty();
@@ -38,7 +37,7 @@ $(document).ready(function() {
                         $("#slide" + i).addClass("green");
 
                     }
-               }
+                }
                 $('html, body').animate({
                 scrollTop: $('#info').offset().top
 
