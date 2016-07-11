@@ -12,6 +12,9 @@ $(document).ready(function() {
             } else {
                 $('#stock_data').css("display", 'block');
                 $('#name').html(data.name);
+                $('#day_change').html(data.day_change);
+                $('#pe').html("PE Ratio: " + data.pe);
+                console.log(data.pe);
                 $('#fail').css("display", 'none');
                 $('#data').empty();
                 $('#current').html(data.current_price);
