@@ -23,7 +23,6 @@ $(document).ready(function() {
                 var keys = Object.keys(hist_data);
                 keys.sort(function(a, b){
                     return new Date(b) - new Date(a);
-
                 });
                 for (var i = 0; i < keys.length - 1; i++) {
                     var last = hist_data[keys[i + 1]]['Close'];
