@@ -1,4 +1,6 @@
 var refresh_int;
+var stock_name;
+var stock_ticker;
 
 $(document).ready(function() {
 
@@ -16,6 +18,8 @@ $(document).ready(function() {
             } else {
                 $('#stock_data').css("display", 'block');
                 $('#name').html(data.name);
+                stock_name = data.name;
+                stock_ticker = stock.toUpperCase();
                 $('#day_change').html(data.day_change);
                 $('#pe').html("PE Ratio: " + data.pe);
                 console.log(data.pe);
@@ -58,11 +62,14 @@ $(document).ready(function() {
         var stock_2 = $("#get_compare").val();
         $.getJSON('/api/get_stock/' + stock_2, function(data) {
             if (data[0] == "failure") {
+             $('#success').css("display", "none");
                 $('#fail_2').html("<strong> ALERT: </strong>" + stock_2 + " is not a valid ticker");
                 $('#fail_2').css("display", 'block');
             } else {
                 console.log("what");
-
+                $('#fail_2').css("display", "none");
+                $('#success').html("Comparing <strong>" + stock_name + " (" + stock_ticker + ")</strong> and <strong>" + data.name + " (" + stock_2.toUpperCase() + ")</strong>!");
+                $('#success').css("display", 'block');
             }
 
         });

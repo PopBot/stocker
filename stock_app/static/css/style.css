@@ -234,3 +234,11 @@ div p {
     padding-bottom: 10px;
     background-color: #3B8686;
 }
+
+#success {
+    display: none;
+}
+
+#success strong {
+    font-size: 16px;
+}
