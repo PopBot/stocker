@@ -62,18 +62,19 @@ function update_price(stock) {
         $('#day_change').html(data.day_change);
         console.log(data.current_price + ' ' + data.day_change);
         console.log("HEY");
-        /*
-        if (up) {
-            greren()
-        else
-            red()
-        else
-            unchanged
-        }
+        var diff = data.current_price - current;
 
-        setTimeout(clear_color, 500);
-        */
+        if (diff > 0) {
+            flash_color('#47d147');
+        } else if (diff < 0) {
+            flash_color('#ff4d4d');
+        }
     });
+}
+
+function flash_color(color) {
+    $('#current').css("background-color", color);
+    setTimeout(flash_color, 500, '');
 }
 
 function get_percent(old, cur) {
