@@ -8,6 +8,7 @@ import datetime
 from datetime import timedelta
 # Create your views here.
 
+ua = 'Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0'
 """
 def get_stock(request):
     stock = request.path.split('/')[-1]
@@ -24,7 +25,8 @@ def get_stock(request):
 def get_stock(request):
     stock = request.path.split('/')[-1]
     url = 'https://www.google.com/finance?q=' + stock
-    text = requests.get(url).text
+    headers = {'User-Agent': ua}
+    text = requests.get(url, headers=headers).text
     soup = bs4.BeautifulSoup(text, "html.parser")
     try:
         data = {}
@@ -44,7 +46,8 @@ def get_stock(request):
         fifty = timedelta(days=-50)
 
         return HttpResponse(json_data)
-    except:
+    except Exception as e:
+        print repr(e)
         return HttpResponse('["failure"]')
 
 # gets data from the last 200 trading days
