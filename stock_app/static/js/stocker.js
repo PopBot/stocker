@@ -51,6 +51,25 @@ $(document).ready(function() {
         });
         refresh_int = setInterval(update_price, 4000, stock);
     });
+
+    $("#compare_listen").click(function(e) {
+        console.log("yo");
+        e.preventDefault();
+        var stock_2 = $("#get_compare").val();
+        $.getJSON('/api/get_stock/' + stock_2, function(data) {
+            if (data[0] == "failure") {
+                $('#fail_2').html("<strong> ALERT: </strong>" + stock_2 + " is not a valid ticker");
+                $('#fail_2').css("display", 'block');
+
+
+
+            } else {
+                console.log("what");
+
+            }
+
+        });
+    });
 });
 
 function update_price(stock) {

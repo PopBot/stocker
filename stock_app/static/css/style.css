@@ -26,10 +26,13 @@ body, h1, #current, #pe, #day_change {
 #AHHH {
     padding-top: 50px;
 }
-#fail {
+#fail, #fail_2 {
     display: none;
 } 
 #fail strong {
+    font-size: 24px;
+}
+#fail_2 strong {
     font-size: 24px;
 }
 #front {
@@ -49,7 +52,7 @@ body, h1, #current, #pe, #day_change {
 }
 #info {
     background-color:#A8DBA8;
-    color: #0B486B;
+    color: black;
 }
 #stock_data {
     display: none;
@@ -211,4 +214,13 @@ div p {
             transform: perspective(140px) rotateY(180deg);
     opacity: 0; 
   }
+}
+
+#compare h3 {
+    display: inline-block;
+}
+#compare {
+    text-align: center;
+    padding-bottom: 10px;
+    background-color: #3B8686;
 }
