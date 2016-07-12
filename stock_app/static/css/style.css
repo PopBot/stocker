@@ -14,7 +14,7 @@ body, h1, #current, #pe, #day_change {
 #land {
     height: 100%;
     width: 100%;
-    background-color:  #0066ff;
+    background-color:  #0B486B;
     color: white;
 }
 #get_stock {
@@ -48,7 +48,8 @@ body, h1, #current, #pe, #day_change {
     padding-bottom: 10px;
 }
 #info {
-    background-color: #ff6633;
+    background-color:#A8DBA8;
+    color: #0B486B;
 }
 #stock_data {
     display: none;
@@ -57,7 +58,7 @@ body, h1, #current, #pe, #day_change {
     margin:0 auto;
     width: 100%;
     height: 6px;
-    background-color: orange;
+    background-color:#0B486B;
     margin-bottom: 0px;
     margin-top: 0px;
     padding-bottom:0px;
@@ -149,7 +150,7 @@ div p {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #99ccff;
+  background-color: #A8DBA8;
   -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
           animation: sk-foldCubeAngle 2.4s infinite linear both;
   -webkit-transform-origin: 100% 100%;
