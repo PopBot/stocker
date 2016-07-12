@@ -1,9 +1,10 @@
 $(document).ready(function() {
+
     $("#submit").click(function(e) {
         
         e.preventDefault();
         var stock = $('#get_stock').val();
-    
+        // $(".sk-folding-cube").css("display", "block");
         $.getJSON('/api/get_stock/' + stock, function(data) {
             if (data[0] == "failure") {
                 console.log('failure');
@@ -46,10 +47,8 @@ $(document).ready(function() {
 
                 }, 1933);
         }
-        });
+        });  
     });
-    
-
 });
 function get_percent(old, cur) {
     return ((cur - old) / old) * 100
