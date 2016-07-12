@@ -31,7 +31,7 @@ $(document).ready(function() {
                     var last = hist_data[keys[i + 1]]['Close'];
                     var data = hist_data[keys[i]];
                     var change = get_percent(last, data['Close']);
-                    var report = '<div id="bar"><div id="slide' + i + '" class="slider"><span class="tooltiptext">' + keys[i] + ': <br>' + data['Close'] + '</span></div></div>';
+                    var report = '<div class="bar" id="bar' + i + '"><div id="slide' + i + '" class="slider"><span class="tooltiptext">' + keys[i] + ': <br>' + data['Close'] + '</span></div></div>';
                     var temap  = $(report);
                     $("#data").append(temap);
                     if (change < 0) {
@@ -60,9 +60,6 @@ $(document).ready(function() {
             if (data[0] == "failure") {
                 $('#fail_2').html("<strong> ALERT: </strong>" + stock_2 + " is not a valid ticker");
                 $('#fail_2').css("display", 'block');
-
-
-
             } else {
                 console.log("what");
 
