@@ -1,8 +1,11 @@
+var refresh_int;
+
 $(document).ready(function() {
 
     $("#submit").click(function(e) {
         
         e.preventDefault();
+        clearInterval(refresh_int);
         var stock = $('#get_stock').val();
         // $(".sk-folding-cube").css("display", "block");
         $.getJSON('/api/get_stock/' + stock, function(data) {
@@ -42,16 +45,41 @@ $(document).ready(function() {
                     }
                 }
                 $('html, body').animate({
-                scrollTop: $('#info').offset().top
-
+                    scrollTop: $('#info').offset().top
                 }, 1933);
-        }
-        });  
+            }
+        });
+        refresh_int = setInterval(update_price, 4000, stock);
     });
 });
+
+function update_price(stock) {
+    $.getJSON('/api/get_stock/' + stock, function(data) {
+        var current = $('#current').html();
+        var day_change = $('#day_change').html();
+        console.log("test" + current + " " + day_change);
+        $('#current').html(data.current_price);
+        $('#day_change').html(data.day_change);
+        console.log(data.current_price + ' ' + data.day_change);
+        console.log("HEY");
+        /*
+        if (up) {
+            greren()
+        else
+            red()
+        else
+            unchanged
+        }
+
+        setTimeout(clear_color, 500);
+        */
+    });
+}
+
 function get_percent(old, cur) {
     return ((cur - old) / old) * 100
 }
+
 function percent_change(percent) {
     // -5 (-50) to 5 (50)
     return Math.abs(percent * 10);
