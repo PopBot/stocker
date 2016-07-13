@@ -22,6 +22,7 @@ $(document).ready(function() {
                 stock_ticker = stock.toUpperCase();
                 $('#day_change').html(data.day_change);
                 $('#pe').html("PE Ratio: " + data.pe);
+                $('#eps').html("EPS: " + data.eps);
                 console.log(data.pe);
                 $('#fail').css("display", 'none');
                 $('#data').empty();

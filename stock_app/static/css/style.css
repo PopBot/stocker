@@ -56,9 +56,13 @@ body, h1, #current, #pe, #day_change {
     text-align: center;
     padding-top: 10px;
 }
-#current, #pe{
+#current {
     text-align: center;
     padding-bottom: 10px;
+}
+#eps, #pe {
+    text-align: center;
+    margin: 0;
 }
 #day_change{
     text-align: center;
@@ -259,7 +263,6 @@ div p {
 
 #stat h2 {
     text-align:center;
-    color: #CFF09E;
     padding-top: 0px;
     margin: 0;
     font-size: 40px;

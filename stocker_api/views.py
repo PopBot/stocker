@@ -40,7 +40,7 @@ def get_stock(request):
             data['day_change'] = soup.select('.ch')[0].getText()
 
         data['historical_data'] = get_historical_data(stock)
-
+        data['eps'] = soup.select('.snap-data .val')[7].getText().split('\n')[0]
         json_data = json.dumps(data)
         today = datetime.datetime.now().date()
         fifty = timedelta(days=-50)
