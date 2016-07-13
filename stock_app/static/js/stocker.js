@@ -1,6 +1,9 @@
 var refresh_int;
 var stock_name;
 var stock_ticker;
+var first_stock;
+var dates;
+
 
 $(document).ready(function() {
 
@@ -32,6 +35,8 @@ $(document).ready(function() {
                 keys.sort(function(a, b){
                     return new Date(b) - new Date(a);
                 });
+                first_stock = hist_data;
+                dates = keys;
                 for (var i = 0; i < keys.length - 1; i++) {
                     var last = hist_data[keys[i + 1]]['Close'];
                     var data = hist_data[keys[i]];
@@ -71,8 +76,26 @@ $(document).ready(function() {
                 $('#fail_2').css("display", "none");
                 $('#success').html("Comparing <strong>" + stock_name + " (" + stock_ticker + ")</strong> and <strong>" + data.name + " (" + stock_2.toUpperCase() + ")</strong>!");
                 $('#success').css("display", 'block');
-            }
+                var second_stock = data.historical_data;
+                for (var i = 0; i < dates.length - 1; i++) {
+                    var change_1_y = first_stock[dates[i + 1]]['Close'];
+                    var change_1_t = first_stock[dates[i]]['Close'];
+                    var change_1 = get_percent(change_1_y, change_1_t);
 
+                    var change_2_y = second_stock[dates[i + 1]]['Close'];
+                    var change_2_t = second_stock[dates[i]]['Close'];
+                    var change_2 = get_percent(change_2_y, change_2_t);
+                    $("#slide" + i + " .tooltiptext").html(dates[i] + ': <br>' + stock_ticker + ': ' + round_hund(change_1) +
+                        "<br> vs. <br>" + stock_2.toUpperCase() + ": " + round_hund(change_2));
+                    var diff = change_2 - change_1;
+                    if (diff < 0) {
+                        $("#slide" + i).css({"background-color": "#ff4d4d", "width": percent_change(diff) + "%", "left": 50 - percent_change(diff) + "%"});
+
+                    } else {
+                        $("#slide" + i).css({"background-color": "#47d147", "width": percent_change(diff) + "%", "left": "50%"});
+                    }
+                }
+            }
         });
     });
 
@@ -120,4 +143,11 @@ function percent_change(percent) {
 
 }
 
-
+// returns a % rounded to the hund and with the appropriate +/- sign
+function round_hund(num) {
+    var num2 = (Math.round(num * 100.0) / 100.0).toFixed(2);
+    if (num2 > 0) {
+        var num2 = "+" + num2;
+    }
+    return num2 + "%";
+}
