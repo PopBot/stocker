@@ -147,6 +147,7 @@ div p {
 
 /* animation I found at http://tobiasahlin.com/spinkit/ */
 .sk-folding-cube {
+  display:none;
   margin: 50px auto;
   width: 40px;
   height: 40px;

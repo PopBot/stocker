@@ -6,9 +6,10 @@ var dates;
 
 
 $(document).ready(function() {
-
+    
+    $("#load").fadeIn(3000);
     $("#submit").click(function(e) {
-        
+
         e.preventDefault();
         clearInterval(refresh_int);
         var stock = $('#get_stock').val();
