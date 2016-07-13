@@ -56,9 +56,13 @@ body, h1, #current, #pe, #day_change {
     text-align: center;
     padding-top: 10px;
 }
-#current, #pe, #day_change{
+#current, #pe{
     text-align: center;
     padding-bottom: 10px;
+}
+#day_change{
+    text-align: center;
+    padding-bottom: 6px;
 }
 #info {
     background-color:#A8DBA8;
@@ -240,4 +244,24 @@ div p {
 }
 
 #success strong {
-    font-size: 16px;}
+    font-size: 16px;
+}
+#stat {
+    display: none;
+    background-color: #79BD9A;
+}
+#transition {
+    text-align:center;
+}
+#trans {
+    color: #0B486B;
+}
+
+#stat h2 {
+    text-align:center;
+    color: #CFF09E;
+    padding-top: 0px;
+    margin: 0;
+    font-size: 40px;
+    padding-bottom: 5px;
+}

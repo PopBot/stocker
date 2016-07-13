@@ -74,6 +74,14 @@ $(document).ready(function() {
 
         });
     });
+
+    var links = jQuery('a[href^="#"]').add('a[href^="."]');
+    $(links).on('click', function(event) {
+        event.preventDefault();
+        var dest = $(this).attr('href');
+        $(dest).slideToggle("slow");
+
+    });
 });
 
 function update_price(stock) {

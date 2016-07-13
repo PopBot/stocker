@@ -6,6 +6,7 @@
         <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Open+Sans|Slabo+27px' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'ico/fav.ico' %}">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -35,10 +36,20 @@
         </div>
         <div id="stock_data">
         <div id="info">
-            <h1 id="name"> </h1>
-            <h2 id="current"></h2>
-            <h3 id="day_change"></h3>
-            <h3 id="pe"></h3>
+            <div id="basic">
+                <h1 id="name"> </h1>
+                <h2 id="current"></h2>
+                <h3 id="day_change"></h3>
+                <div id="transition">
+                <a id="statistics" href="#stat">
+                <span class="fa fa-angle-double-down fa-2x fa-inverse" id="trans"></span>
+                </a>
+                </div>
+            </div>
+            <div id="stat">
+                <h2> Statistics </h2>
+                <h3 id="pe"></h3>
+            </div>
             <form id="compare">
             <h3> Compare: </h3>
             <input id="get_compare"> </input>
