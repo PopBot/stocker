@@ -1,9 +1,13 @@
 var refresh_int;
-var stock_name;
-var stock_ticker;
-var first_stock;
-var dates;
+var stock_name; // name of the initial stock
+var stock_ticker; // ticker of the initial stock
+var first_stock; // historical data of first_stock
+var dates; // dates of first stock's hist data
 
+var first_html = ""; // html bar graph for stock 1
+var second_html = ""; // same -> stock 2
+var overlap_html = ""; // overlapping graph 
+var vs_html = ""; // vs graph
 
 $(document).ready(function() {
     
@@ -43,8 +47,8 @@ $(document).ready(function() {
                     var data = hist_data[keys[i]];
                     var change = get_percent(last, data['Close']);
                     var report = '<div class="bar" id="bar' + i + '"><div id="slide' + i + '" class="slider"><span class="tooltiptext">' + keys[i] + ': <br>' + data['Close'] + '</span></div></div>';
-                    var temap  = $(report);
-                    $("#data").append(temap);
+                    $("#data").append(report);
+                    
                     if (change < 0) {
                         $("#slide" + i).css({"background-color": "#ff4d4d", "width": percent_change(change) + "%", "left": 50 - percent_change(change) + "%"});
                         $("#slide" + i).addClass("red");
@@ -54,7 +58,10 @@ $(document).ready(function() {
                         $("#slide" + i).addClass("green");
 
                     }
+                    
                 }
+                first_html = grab_html("#data");
+
                 $('html, body').animate({
                     scrollTop: $('#info').offset().top
                 }, 1933);
@@ -74,7 +81,7 @@ $(document).ready(function() {
                 $('#fail_2').css("display", 'block');
             } else {
                 console.log("what");
-
+                var temp_html = $("<div id='data'>");
                 $('#fail_2').css("display", "none");
                 $('#success').html("Comparing <strong>" + stock_name + " (" + stock_ticker + ")</strong> and <strong>" + data.name + " (" + stock_2 + ")</strong>!");
                 $('#success').css("display", 'block');
@@ -87,6 +94,8 @@ $(document).ready(function() {
                     var change_2_y = second_stock[dates[i + 1]]['Close'];
                     var change_2_t = second_stock[dates[i]]['Close'];
                     var change_2 = get_percent(change_2_y, change_2_t);
+
+
                     $("#slide" + i + " .tooltiptext").html(dates[i] + ': <br>' + stock_ticker + ': ' + round_hund(change_1) +
                         "<br> vs. <br>" + stock_2.toUpperCase() + ": " + round_hund(change_2));
                     var diff = change_2 - change_1;
@@ -96,7 +105,23 @@ $(document).ready(function() {
                     } else {
                         $("#slide" + i).css({"background-color": "#47d147", "width": percent_change(diff) + "%", "left": "50%"});
                     }
+                    // grabbing 2 stock bar
+                    var report = '<div class="bar" id="bar' + i + '"><div id="slide' + i + '" class="slider"><span class="tooltiptext">' + dates[i] + ': <br>' + change_2_t + '</span></div></div>';
+                    temp_html.append(report);
+                    if (change_2 < 0) {
+                        temp_html.find("#slide" + i).css({"background-color": "#ff4d4d", "width": percent_change(change_2) + "%", "left": 50 - percent_change(change_2) + "%"});
+                    } else {
+                        temp_html.find("#slide" + i).css({"background-color": "#47d147", "width": percent_change(change_2) + "%", "left": "50%"});
+
+                    }                    
+
                 }
+                temp_html.append("</div>");
+                second_html = grab_html(temp_html);
+                 
+                console.log(temp_html.html());
+
+                vs_html = grab_html($("#data"));
                 $("#stock1").html("<h2> " + stock_ticker + "</h2>");
                 $("#stockboth").html("<h2> " + stock_ticker + " vs. " + stock_2 + " </h2>");
                 $("#stock2").html("<h2> " + stock_2 + "</h2>");
@@ -107,6 +132,24 @@ $(document).ready(function() {
 
     });
 
+    $("#stock1").hover( 
+        function() {
+        $("#data").html(first_html);
+        }, 
+        function() {
+        $("#data").html(vs_html);
+        }
+    );
+
+       $("#stock2").hover( 
+        function() {
+        $("#data").html(second_html);
+        }, 
+        function() {
+        $("#data").html(vs_html);
+        }
+    );
+
     var links = jQuery('a[href^="#"]').add('a[href^="."]');
     $(links).on('click', function(event) {
         event.preventDefault();
@@ -116,6 +159,12 @@ $(document).ready(function() {
     });
 });
 
+
+function grab_html(element) {
+    return $(element).clone().wrap('<p>').parent().html();
+    
+
+}
 function update_price(stock) {
     $.getJSON('/api/get_stock/' + stock, function(data) {
         var current = $('#current').html();
@@ -144,6 +193,7 @@ function get_percent(old, cur) {
     return ((cur - old) / old) * 100
 }
 
+// scales a percent to a pixel % width
 function percent_change(percent) {
     // -5 (-50) to 5 (50)
     return Math.abs(percent * 10);
