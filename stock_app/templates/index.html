@@ -5,10 +5,10 @@
         <title> Stocker </title>
         <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Open+Sans|Slabo+27px' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'ico/fav.ico' %}">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
         <script type='text/javascript' src="{% static 'js/stocker.js' %}"> </script>
     </head>
@@ -61,6 +61,13 @@
             </div>
 
             </form>
+            <div class="row" id="switch">
+            <div id="stock1" class="col-sm-4"></div>
+            <div id="stockboth" class="col-sm-4">
+            </div>
+            <div id="stock2" class="col-sm-4">
+            </div>
+            </div>
          </div>
         <div id="data"> </div>
         </div>

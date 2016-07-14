@@ -66,7 +66,7 @@ $(document).ready(function() {
     $("#compare_listen").click(function(e) {
         console.log("yo");
         e.preventDefault();
-        var stock_2 = $("#get_compare").val();
+        var stock_2 = $("#get_compare").val().toUpperCase();
         $.getJSON('/api/get_stock/' + stock_2, function(data) {
             if (data[0] == "failure") {
              $('#success').css("display", "none");
@@ -74,8 +74,9 @@ $(document).ready(function() {
                 $('#fail_2').css("display", 'block');
             } else {
                 console.log("what");
+
                 $('#fail_2').css("display", "none");
-                $('#success').html("Comparing <strong>" + stock_name + " (" + stock_ticker + ")</strong> and <strong>" + data.name + " (" + stock_2.toUpperCase() + ")</strong>!");
+                $('#success').html("Comparing <strong>" + stock_name + " (" + stock_ticker + ")</strong> and <strong>" + data.name + " (" + stock_2 + ")</strong>!");
                 $('#success').css("display", 'block');
                 var second_stock = data.historical_data;
                 for (var i = 0; i < dates.length - 1; i++) {
@@ -96,8 +97,14 @@ $(document).ready(function() {
                         $("#slide" + i).css({"background-color": "#47d147", "width": percent_change(diff) + "%", "left": "50%"});
                     }
                 }
+                $("#stock1").html("<h2> " + stock_ticker + "</h2>");
+                $("#stockboth").html("<h2> " + stock_ticker + " vs. " + stock_2 + " </h2>");
+                $("#stock2").html("<h2> " + stock_2 + "</h2>");
+
+                $("#switch").slideDown("slow")        
             }
         });
+
     });
 
     var links = jQuery('a[href^="#"]').add('a[href^="."]');

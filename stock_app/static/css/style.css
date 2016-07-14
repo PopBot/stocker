@@ -269,3 +269,11 @@ div p {
     font-size: 40px;
     padding-bottom: 5px;
 }
+
+#switch {
+    display:none;
+}
+
+#switch h2 {
+    text-align: center;
+}
