@@ -119,8 +119,6 @@ $(document).ready(function() {
                 temp_html.append("</div>");
                 second_html = grab_html(temp_html);
                  
-                console.log(temp_html.html());
-
                 vs_html = grab_html($("#data"));
                 $("#stock1").html("<h2> " + stock_ticker + "</h2>");
                 $("#stockboth").html("<h2> " + stock_ticker + " vs. " + stock_2 + " </h2>");
@@ -137,18 +135,49 @@ $(document).ready(function() {
         $("#data").html(first_html);
         }, 
         function() {
-        $("#data").html(vs_html);
+            stock_off();
         }
     );
-
+    
        $("#stock2").hover( 
         function() {
         $("#data").html(second_html);
         }, 
         function() {
-        $("#data").html(vs_html);
+        stock_off();        
         }
     );
+    
+    $("#stock1").click(function(e) {
+        var clicked = $(this).data('clicked');
+        if(clicked == undefined || clicked == false) {
+            $(this).data('clicked', true);
+            $(this).off('mouseleave');
+             $(this).css("background-color", "blue");
+        } else {
+            $(this).on('mouseleave', stock_off);
+            $(this).data('clicked', false);
+            $(this).css("background-color", "yellow");
+        }
+        $("#data").html(first_html);
+
+    });
+
+    $("#stock2").click(function(e) {
+        var clicked = $(this).data('clicked');
+        if(clicked == undefined || clicked == false) {
+            $(this).data('clicked', true);
+            $(this).off('mouseleave');
+            $(this).css("background-color", "blue");
+        } else {
+            $(this).on('mouseleave', stock_off);
+            $(this).data('clicked', false);
+            $(this).css("background-color", "yellow");
+
+        }
+        $("#data").html(second_html);
+
+    });
 
     var links = jQuery('a[href^="#"]').add('a[href^="."]');
     $(links).on('click', function(event) {
@@ -157,8 +186,14 @@ $(document).ready(function() {
         $(dest).slideToggle("slow");
 
     });
+
+    
+
 });
 
+var stock_off = function() {
+    $("#data").html(vs_html);
+};
 
 function grab_html(element) {
     return $(element).clone().wrap('<p>').parent().html();
