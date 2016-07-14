@@ -21,12 +21,18 @@ $(document).ready(function() {
         clearInterval(refresh_int);
         var stock = $('#get_stock').val();
         // $(".sk-folding-cube").css("display", "block");
+        if (stock == "") {
+            $('#fail').html("<strong> ALERT: </strong>" + " Plz enter something in :(");
+            $('#fail').css("display", 'block');
+         } else {
         $.getJSON('/api/get_stock/' + stock, function(data) {
             if (data[0] == "failure") {
                 console.log('failure');
                 $('#fail').html("<strong> ALERT: </strong>" + stock + " is not a valid ticker");
                 $('#fail').css("display", 'block');
             } else {
+                $('#fail').css("display", 'none');
+
                 $('#stock_data').css("display", 'block');
                 $('#name').html(data.name);
                 stock_name = data.name;
@@ -35,7 +41,6 @@ $(document).ready(function() {
                 $('#pe').html("PE Ratio: " + data.pe);
                 $('#eps').html("EPS: " + data.eps);
                 console.log(data.pe);
-                $('#fail').css("display", 'none');
                 $('#data').empty();
                 $('#current').html(data.current_price);
                 var hist_data = data.historical_data;
@@ -70,6 +75,7 @@ $(document).ready(function() {
                 }, 1933);
             }
         });
+        }
         refresh_int = setInterval(update_price, 4000, stock);
     });
 
@@ -77,6 +83,11 @@ $(document).ready(function() {
         console.log("yo");
         e.preventDefault();
         var stock_2 = $("#get_compare").val().toUpperCase();
+        if (stock_2 == "") {
+            $('#success').css("display", "none");
+            $('#fail_2').html("<strong> ALERT: </strong>" + " Plz enter something in :(");
+            $('#fail_2').css("display", 'block');
+        } else {
         $.getJSON('/api/get_stock/' + stock_2, function(data) {
             if (data[0] == "failure") {
              $('#success').css("display", "none");
@@ -129,6 +140,7 @@ $(document).ready(function() {
                 $("#switch").slideDown("slow")        
             }
         });
+        }
 
     });
 
