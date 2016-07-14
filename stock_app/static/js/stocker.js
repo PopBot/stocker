@@ -159,8 +159,8 @@ $(document).ready(function() {
             $("#stock2").off('mouseleave');
         } else {
             // enable the other button
-            $("#stock1").on('mouseenter', stock_on1);
-            $("#stock1").on('mouseleave', stock_off);
+            $("#stock2").on('mouseenter', stock_on2);
+            $("#stock2").on('mouseleave', stock_off);
             
             $(this).on('mouseleave', stock_off);
             $(this).data('clicked', false);
@@ -180,8 +180,8 @@ $(document).ready(function() {
             $("#stock1").off('mouseleave');
         } else {
             // enable the other button
-            $("#stock2").on('mouseenter', stock_on2);
-            $("#stock2").on('mouseleave', stock_off);
+            $("#stock1").on('mouseenter', stock_on1);
+            $("#stock1").on('mouseleave', stock_off);
 
             $(this).on('mouseleave', stock_off);
             $(this).data('clicked', false);
