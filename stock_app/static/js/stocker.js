@@ -123,7 +123,6 @@ $(document).ready(function() {
                 $("#stock1").html("<h2> " + stock_ticker + "</h2>");
                 $("#stockboth").html("<h2> " + stock_ticker + " vs. " + stock_2 + " </h2>");
                 $("#stock2").html("<h2> " + stock_2 + "</h2>");
-
                 $("#switch").slideDown("slow")        
             }
         });
@@ -132,7 +131,7 @@ $(document).ready(function() {
 
     $("#stock1").hover( 
         function() {
-        $("#data").html(first_html);
+            stock_on1(); 
         }, 
         function() {
             stock_off();
@@ -141,10 +140,10 @@ $(document).ready(function() {
     
        $("#stock2").hover( 
         function() {
-        $("#data").html(second_html);
+            stock_on2();
         }, 
         function() {
-        stock_off();        
+            stock_off();        
         }
     );
     
@@ -153,14 +152,20 @@ $(document).ready(function() {
         if(clicked == undefined || clicked == false) {
             $(this).data('clicked', true);
             $(this).off('mouseleave');
-             $(this).css("background-color", "blue");
+            $(this).css("background-color", "#81ca81");
+            // disable the other button
+            $("#stock2").css("background-color", "#A8DBA8");
+            $("#stock2").off('mouseenter');
+            $("#stock2").off('mouseleave');
         } else {
+            // enable the other button
+            $("#stock1").on('mouseenter', stock_on1);
+            $("#stock1").on('mouseleave', stock_off);
+            
             $(this).on('mouseleave', stock_off);
             $(this).data('clicked', false);
-            $(this).css("background-color", "yellow");
+            $(this).css("background-color", "#A8DBA8");
         }
-        $("#data").html(first_html);
-
     });
 
     $("#stock2").click(function(e) {
@@ -168,15 +173,20 @@ $(document).ready(function() {
         if(clicked == undefined || clicked == false) {
             $(this).data('clicked', true);
             $(this).off('mouseleave');
-            $(this).css("background-color", "blue");
+            $(this).css("background-color", "#81ca81");
+            // disable the other button
+            $("#stock1").css("background-color", "#A8DBA8");
+            $("#stock1").off('mouseenter');
+            $("#stock1").off('mouseleave');
         } else {
+            // enable the other button
+            $("#stock2").on('mouseenter', stock_on2);
+            $("#stock2").on('mouseleave', stock_off);
+
             $(this).on('mouseleave', stock_off);
             $(this).data('clicked', false);
-            $(this).css("background-color", "yellow");
-
+            $(this).css("background-color", "#A8DBA8");
         }
-        $("#data").html(second_html);
-
     });
 
     var links = jQuery('a[href^="#"]').add('a[href^="."]');
@@ -184,10 +194,7 @@ $(document).ready(function() {
         event.preventDefault();
         var dest = $(this).attr('href');
         $(dest).slideToggle("slow");
-
     });
-
-    
 
 });
 
@@ -195,11 +202,19 @@ var stock_off = function() {
     $("#data").html(vs_html);
 };
 
+var stock_on1 = function() {
+    $("#data").html(first_html);
+};
+
+
+var stock_on2 = function() {
+    $("#data").html(second_html);
+};
+
 function grab_html(element) {
     return $(element).clone().wrap('<p>').parent().html();
-    
-
 }
+
 function update_price(stock) {
     $.getJSON('/api/get_stock/' + stock, function(data) {
         var current = $('#current').html();
@@ -232,8 +247,6 @@ function get_percent(old, cur) {
 function percent_change(percent) {
     // -5 (-50) to 5 (50)
     return Math.abs(percent * 10);
-
-
 }
 
 // returns a % rounded to the hund and with the appropriate +/- sign
