@@ -11,7 +11,10 @@ var vs_html = ""; // vs graph
 
 $(document).ready(function() {
     
-    $("#load").fadeIn(3000);
+    $("#load").fadeIn(4000);
+    $("#title").fadeIn(1000);
+    $("#front h2").fadeIn(1500);
+    $("#front form").fadeIn(2500);
     $("#submit").click(function(e) {
 
         e.preventDefault();
@@ -150,6 +153,7 @@ $(document).ready(function() {
     $("#stock1").click(function(e) {
         var clicked = $(this).data('clicked');
         if(clicked == undefined || clicked == false) {
+            stock_on1();
             $(this).data('clicked', true);
             $(this).off('mouseleave');
             $(this).css("background-color", "#81ca81");
@@ -158,9 +162,12 @@ $(document).ready(function() {
             $("#stock2").off('mouseenter');
             $("#stock2").off('mouseleave');
         } else {
-            // enable the other button
+            // button is deactivated, movement=free again
             $("#stock2").on('mouseenter', stock_on2);
             $("#stock2").on('mouseleave', stock_off);
+            $("#stock1").on('mouseenter', stock_on1);
+            $("#stock1").on('mouseleave', stock_off);
+
             
             $(this).on('mouseleave', stock_off);
             $(this).data('clicked', false);
@@ -171,10 +178,12 @@ $(document).ready(function() {
     $("#stock2").click(function(e) {
         var clicked = $(this).data('clicked');
         if(clicked == undefined || clicked == false) {
+
+            stock_on2();
             $(this).data('clicked', true);
             $(this).off('mouseleave');
             $(this).css("background-color", "#81ca81");
-            // disable the other button
+            // button is deactivated, movement=free again
             $("#stock1").css("background-color", "#A8DBA8");
             $("#stock1").off('mouseenter');
             $("#stock1").off('mouseleave');
@@ -182,6 +191,8 @@ $(document).ready(function() {
             // enable the other button
             $("#stock1").on('mouseenter', stock_on1);
             $("#stock1").on('mouseleave', stock_off);
+            $("#stock2").on('mouseenter', stock_on2);
+            $("#stock2").on('mouseleave', stock_off);
 
             $(this).on('mouseleave', stock_off);
             $(this).data('clicked', false);
