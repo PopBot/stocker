@@ -72,7 +72,7 @@ $(document).ready(function() {
                 first_html = grab_html("#data");
 
                 $('html, body').animate({
-                    scrollTop: $('#info').offset().top
+                    scrollTop: $('#stock_data').offset().top
                 }, 1933);
             }
         });
