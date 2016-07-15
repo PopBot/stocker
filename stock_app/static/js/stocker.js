@@ -11,7 +11,7 @@ var vs_html = ""; // vs graph
 
 $(document).ready(function() {
     
-    $("#load").fadeIn(4000);
+    $("#load").fadeIn(6000);
     $("#title").fadeIn(1000);
     $("#front h2").fadeIn(1500);
     $("#front form").fadeIn(2500);
@@ -19,6 +19,7 @@ $(document).ready(function() {
 
         e.preventDefault();
         clearInterval(refresh_int);
+
         var stock = $('#get_stock').val();
         // $(".sk-folding-cube").css("display", "block");
         if (stock == "") {
@@ -114,10 +115,10 @@ $(document).ready(function() {
                         "<br> vs. <br>" + stock_2.toUpperCase() + ": " + round_hund(change_2));
                     var diff = change_2 - change_1;
                     if (diff < 0) {
-                        $("#slide" + i).css({"background-color": "#ff4d4d", "width": percent_change(diff) + "%", "left": 50 - percent_change(diff) + "%"});
+                        $("#slide" + i).css({"background-color": "#A87D08", "width": percent_change(diff) + "%", "left": 50 - percent_change(diff) + "%"});
 
                     } else {
-                        $("#slide" + i).css({"background-color": "#47d147", "width": percent_change(diff) + "%", "left": "50%"});
+                        $("#slide" + i).css({"background-color": "#A87D08", "width": percent_change(diff) + "%", "left": "50%"});
                     }
                     // grabbing 2 stock bar
                     var report = '<div class="bar" id="bar' + i + '"><div id="slide' + i + '" class="slider"><span class="tooltiptext">' + dates[i] + ': <br>' + change_2_t + '</span></div></div>';

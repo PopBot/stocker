@@ -1,5 +1,6 @@
 body, html {
     height: 100%;
+    overflow-x: hidden;
 }
 body, h1, #current, #pe, #day_change {
     margin:0 !important;
@@ -277,3 +278,5 @@ div p {
 #switch h2 {
     text-align: center;
 }
+
+
