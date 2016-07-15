@@ -118,8 +118,8 @@ $(document).ready(function() {
                     var change_2 = get_percent(change_2_y, change_2_t);
 
 
-                    $("#slide" + i + " .tooltiptext").html(dates[i] + ': <br>' + stock_ticker + ': ' + round_hund(change_1) +
-                        "<br> vs. <br>" + stock_2.toUpperCase() + ": " + round_hund(change_2));
+                    $("#slide" + i + " .tooltiptext").html(dates[i] + ': <br>' + stock_ticker + ': (' + round_hund(change_1) +
+                        ")<br> vs. <br>" + stock_2.toUpperCase() + ": (" + round_hund(change_2) + ")");
                     var diff = change_2 - change_1;
                     if (diff < 0) {
                         $("#slide" + i).css({"background-color": "#A87D08", "width": percent_change(diff) + "%", "left": 50 - percent_change(diff) + "%"});
