@@ -62,7 +62,7 @@ $(document).ready(function() {
                     var last = hist_data[keys[i + 1]]['Close'];
                     var data = hist_data[keys[i]];
                     var change = get_percent(last, data['Close']);
-                    var report = '<div class="bar" id="bar' + i + '"><div id="slide' + i + '" class="slider"><span class="tooltiptext">' + keys[i] + ': <br>' + data['Close'] + '</span></div></div>';
+                    var report = '<div class="bar" id="bar' + i + '"><div id="slide' + i + '" class="slider"><span class="tooltiptext">' + keys[i] + ': <br>' + data['Close'] + " (" + round_hund(change) + ')</span></div></div>';
                     $("#data").append(report);
                     
                     if (change < 0) {
@@ -128,7 +128,7 @@ $(document).ready(function() {
                         $("#slide" + i).css({"background-color": "#A87D08", "width": percent_change(diff) + "%", "left": "50%"});
                     }
                     // grabbing 2 stock bar
-                    var report = '<div class="bar" id="bar' + i + '"><div id="slide' + i + '" class="slider"><span class="tooltiptext">' + dates[i] + ': <br>' + change_2_t + '</span></div></div>';
+                    var report = '<div class="bar" id="bar' + i + '"><div id="slide' + i + '" class="slider"><span class="tooltiptext">' + dates[i] + ': <br>' + change_2_t + " (" + round_hund(change_2) + ')</span></div></div>';
                     temp_html.append(report);
                     if (change_2 < 0) {
                         temp_html.find("#slide" + i).css({"background-color": "#ff4d4d", "width": percent_change(change_2) + "%", "left": 50 - percent_change(change_2) + "%"});
@@ -276,8 +276,8 @@ function get_percent(old, cur) {
 
 // scales a percent to a pixel % width
 function percent_change(percent) {
-    // -5 (-50) to 5 (50)
-    return Math.abs(percent * 10);
+    //  from -5 (-50) to 5 (50)
+    return Math.abs(percent * 5);
 }
 
 // returns a % rounded to the hund and with the appropriate +/- sign
