@@ -34,7 +34,14 @@ $(document).ready(function() {
             } else {
                 $('#fail').css("display", 'none');
 
+                // Emptying all the potential old stuff from the compare section
+                $('#fail_2').css("display", 'none');
+                $('#success').css("display", 'none');
+                $('#switch').slideUp('slow');
                 $('#stock_data').css("display", 'block');
+                $('#get_compare').val(""); 
+
+                // Set some values up...
                 $('#name').html(data.name);
                 stock_name = data.name;
                 stock_ticker = stock.toUpperCase();
