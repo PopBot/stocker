@@ -143,7 +143,6 @@ $(document).ready(function() {
                  
                 vs_html = grab_html($("#data"));
                 $("#stock1").html("<h2> " + stock_ticker + "</h2>");
-                $("#stockboth").html("<h2> " + stock_ticker + " vs. " + stock_2 + " </h2>");
                 $("#stock2").html("<h2> " + stock_2 + "</h2>");
                 $("#switch").slideDown("slow")        
             }
